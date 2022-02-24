@@ -1,0 +1,25 @@
+{
+  "name": "engineering_team_details",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CSeddon01/Engineering_Team_Details.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CSeddon01/Engineering_Team_Details/issues"
+  },
+  "homepage": "https://github.com/CSeddon01/Engineering_Team_Details#readme",
+  "devDependencies": {
+    "jest": "^27.5.1"
+  }
+}
