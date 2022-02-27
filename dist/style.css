@@ -1,0 +1,17 @@
+.team-area {
+    max-width: 1000px;
+    margin: 3em auto;
+    flex-wrap: wrap;
+}
+
+.employee-card {
+    margin: 1em;
+    max-width: 280px;
+    width: 90%;
+    min-height: 22rem;
+    background-color: mediumblue;
+    color: white;
+    display: flex;  
+    flex-direction: column;
+    justify-content: space-between;
+}
