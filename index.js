@@ -1,32 +1,29 @@
-// Packages needed for this application 
+// Packages needed for this application
 const inquirer = require("inquirer");
 const fs = require("fs");
-const fsPromises = fs.promises
-const Manager = require('./lib/Manager');
-const Engineer = require('./lib/Engineer');
-const Intern = require('./lib/Intern');
+const fsPromises = fs.promises;
+const Manager = require("./lib/Manager");
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
 // const generateMarkdown = require("./utils/generateMarkdown.js");
 
-// const promptForOptions = async (options) => {
 const questions = [
-    //Ask for employee name 
-    {
-        type: "input",
-        name: "employeeName",
-        message: "What is the employee name?(Required)",
-        validate: (employeeName) => {
-          if (employeeName) {
-            return true;
-          } else {
-            console.log(
-              "Please enter the employee name. (Required)"
-            );
-            return false;
-          }
-        },
-      },
-//Ask for employee id
-{
+  //Ask for employee name
+  {
+    type: "input",
+    name: "employeeName",
+    message: "What is the employee name?(Required)",
+    validate: (employeeName) => {
+      if (employeeName) {
+        return true;
+      } else {
+        console.log("Please enter the employee name. (Required)");
+        return false;
+      }
+    },
+  },
+  //Ask for employee id
+  {
     type: "input",
     name: "employeeId",
     message: "What is the employee ID?(Required)",
@@ -34,9 +31,7 @@ const questions = [
       if (employeeId) {
         return true;
       } else {
-        console.log(
-          "Please enter the employee ID. (Required)"
-        );
+        console.log("Please enter the employee ID. (Required)");
         return false;
       }
     },
@@ -50,56 +45,46 @@ const questions = [
       if (employeeEmail) {
         return true;
       } else {
-        console.log(
-          "Please enter the employee email. (Required)"
-        );
+        console.log("Please enter the employee email. (Required)");
         return false;
       }
     },
   },
-]
-//Ask for employee role
-// inquirer
-// .prompt({
-//       type: "prompt",
-//       name: "employeeManager", 
-//       message: "Is employee a Manager? (Required)",
-//       choices: ["Yes", "No"],
-//   }),
-//   then(() => {
-//       inquirer.prompt({
-//           type: "input", 
-//           name: "number",
-//           message: "What is employee office phone extension? (Required)",
-//           validate: (employeeName) => {
-//             if (employeeName) {
-//               return true;
-//             } else {
-//               console.log(
-//                 "Please enter the employee name. (Required)"
-//               );
-//               return false;
-//             }
-//           },
-//       })
-//   })
-              
-// ]}       
+  //Ask for employee role
+  {
+    type: "list",
+    name: "employeeRole",
+    message: "Choose employee role: (Required)",
+    choices: ["Manager", "Intern", "Engineer"],
+    default: "Employee",
+  },
 
-function writeToFile(fileName, data) {
-    fsPromises.writeFile(fileName, data, 
-      (err) => {err ? console.error(err) : console.log("Created File.");
-    });
+  {
+    type: "input",
+    name: "github",
+    message: "Enter engineer github username:",
+    when: (answers) => answers.employeeRole === "Engineer",
+  },
+
+  {
+    type: "input",
+    name: "school",
+    message: "Enter intern school name:",
+    when: (answers) => answers.employeeRole === "Intern",
+  },
+
+  {
+    type: "input",
+    name: "extension",
+    message: "Enter manager extension number:",
+    when: (answers) => answers.employeeRole === "Manager",
+  },
+]
+
+  function init() {
+    inquirer.prompt(questions).then(async (answers) => {
+      console.log(answers);
+    })
   }
 
-//   async function init(prompt) {
-//     try {
-//       const answers = await inquirer.prompt(prompt);
-//       console.log("Gathered response.");
-//       let generateMD = await generateMarkdown(answers);
-//       console.log("Generating team...");
-//       writeToFile("./dist/eteam.html", generateMD);
-//      } finally { console.log("Your Team file has been generated.");
-//   }}
-  
-// init (questions);
+init(questions);
