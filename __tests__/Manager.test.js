@@ -13,7 +13,7 @@ test ("creates manager role", () => {
     expect(manager.getRole()).toBe("Manager");
 });
 
-test ("getPhone() should return the phone number", () => {
+test ("getPhone() should return the phone extension number", () => {
     const manager = new Manager("Jared", 1, "jared@fakemail", 123);
     const phone = manager.getPhone();
     expect(phone).toEqual(manager.phone);

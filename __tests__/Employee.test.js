@@ -11,10 +11,11 @@ test ("creates employee role", () => {
   const employee = new Employee("Employee");
   expect(employee.getRole()).toBe("Employee");
 });
-// test("testing get ID", () => {
-//   const id = 1;
-//   const employee = new Employee("Jared", id, "jared@fakemail.com");
-//   expect(employee.getId()).toBe(id);
-// });
+
+test("testing get ID", () => {
+  const id = 1;
+  const employee = new Employee("Jared", id, "jared@fakemail.com");
+  expect(employee.getId()).toBe(id);
+});
 
 module.exports = Employee;
