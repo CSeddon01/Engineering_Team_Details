@@ -4,13 +4,20 @@ const fs = require("fs");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
-// const writeFile = util.promisify(fs.writeFile);
-const render = `/dist/eteam`;
+const style = require("./dist/style.css");
+const Employee = require("./lib/Employee");
+
+const writeToFile = require("./src/page-template");
+
+
+const templateGenerator = require('./src/page-template');
+
 
 const employeeArray = [];
 
+
 const questions = [
-  //Ask for employee name
+  //Ask for employee employeeName
   {
     type: "input",
     name: "employeeName",
@@ -24,7 +31,7 @@ const questions = [
       }
     },
   },
-  //Ask for employee id
+  //Ask for employee employeeId
   {
     type: "input",
     name: "employeeId",
@@ -38,7 +45,7 @@ const questions = [
       }
     },
   },
-  //Ask for employee email
+  //Ask for employee employeeEmail
   {
     type: "input",
     name: "employeeEmail",
@@ -70,9 +77,9 @@ const questions = [
   //Intern role question
   {
     type: "input",
-    name: "school",
-    message: "Enter intern school name:",
-    when: (answers) => answers.employeeRole === "Intern",
+    name: "github",
+    message: "Enter engineer github username:",
+    when: (answers) => answers.employeeRole === "Engineer",
   },
   //Manager role question
   {
@@ -96,46 +103,111 @@ function addEmployee() {
       employeeList();
     }
     if (engTeam.newEmployee === "No") {
-      renderHTML(employeeArray);
+     compileTeam();
     }
   });
 }
 
 function employeeList() {
-  inquirer.prompt(employeeMembers).then((team) => {
+  inquirer.prompt(questions).then((team) => {
     if (team.employeeRole === "Manager") {
       let manager = new Manager(
-        managerCard.employeeName,
-        managerCard.employeeId,
-        managerCard.employeeEmail,
+        managerCard.employeeemployeeName,
+        managerCard.employeeemployeeId,
+        managerCard.employeeemployeeEmail,
         managerCard.extension
       );
       employeeArray.push(manager);
-      teamInfo();
+      
     } else if (team.employeeRole === "Engineer") {
       let engineer = new Engineer(
-        engineerCard.employeeName,
-        engineerCard.employeeId,
-        engineerCard.employeeEmail,
+        engineerCard.employeeemployeeName,
+        engineerCard.employeeemployeeId,
+        engineerCard.employeeemployeeEmail,
         engineerCard.github
       );
       employeeArray.push(engineer);
+     
     } else if (team.employeeRole === "Intern") {
       let intern = new Intern(
-        internCard.employeeName,
-        internCard.employeeId,
-        internCard.employeeEmail,
+        internCard.employeeemployeeName,
+        internCard.employeeemployeeId,
+        internCard.employeeemployeeEmail,
         internCard.school
       );
       employeeArray.push(intern);
+      
     }
   });
 }
 
-async function renderHTML(file) {
-  const teamHTML = render(file);
-  await fs.writeFile(outputPath, teamHTML).then(function () {
-    console.log("Completed Employee List");
-  })
+function compileTeam () {
+  const htmlArray = [];
+  const htmlBeginning = `
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta employeeName="viewport" content="wemployeeIdth=device-wemployeeIdth, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>${employeeArray[0]}</title>
+    <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+     ${style}
+    </style>
+</head>
+<body>
+    <div class="banner-bar">
+        <h1>${employeeArray[0]}</h1>
+    </div>
+    <div class="card-container">
+    `
+    htmlArray.push(htmlBeginning);
+
+    for (let i = 1; i < employeeArray.length; i++) {
+        let object = `
+        <div class="member-card">
+            <div class="card-top">
+                <h2>${employeeArray[i].employeeName}</h2>
+                <h2>${employeeArray[i].title}</h2>
+            </div>
+            <div class="card-bottom">
+                <p>Employee employeeId: ${employeeArray[i].employeeId}</p>
+                <p>employeeEmail: <a href="mailto:${employeeArray[i].employeeEmail}">${employeeArray[i].employeeEmail}</a>></p>
+        `
+        if (employeeArray[i].extension) {
+            object += `
+            <p>${employeeArray[i].extension}</p>
+            `
+        }
+        if (employeeArray[i].github) {
+            object += `
+            <p>GitHub: <a href="https://github.com/${employeeArray[i].github}">${employeeArray[i].github}</a></p>
+            `
+        }
+        if (employeeArray[i].school) {
+            object += `
+            <p>School: ${employeeArray[i].school}</p>
+            `
+        }
+        object += `
+        </div>
+        </div>
+        `
+        htmlArray.push(object)
+    }
+
+    const htmlEnd = `
+    </div>
+    </body>
+    </html>
+    `
+    htmlArray.push(htmlEnd);
+
+    fs.writeFile(`./dist/team/${employeeArray[0]}.html`, htmlArray.join(""), function (err) {
+        
+    })
 }
+
 addEmployee();
+  
