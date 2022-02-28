@@ -19,38 +19,38 @@ function templateGenerator(employeeArray) {
                 <div class="row">`;
   for (var i = 0; i < employeeArray.length; i++) {
     if (employeeArray[i].employeeRole === "Manager") {
-      runningHTML += `<div class="card col-2 card-margins text-white bg-light" style="width: 20rem;">
+      runningHTML += `<div class="card col-2 card-margins bg-light text-white" style="width: 20rem;">
             <div class="card-header bg-primary">
               <h3>${employeeArray[i].employeeName}</h3>
               <h4><i class="fas fa-mug-hot"></i>Manager</h4>
             </div>
-            <ul class="list-group list-group-flush">
+            <ul class="list-group list-group-flush text-dark">
             <li class="list-group-item">ID: ${employeeArray[i].employeeId}</li>
-            <li class="list-group-item">Email: <a href="Email:${employeeArray[i].employeeEmail}">${employeeArray[i].employeeEmail}</a></li>
+            <li class="list-group-item">Email: <a href="${employeeArray[i].employeeEmail}">${employeeArray[i].employeeEmail}</a></li>
             <li class="list-group-item">Office number: ${employeeArray[i].extension}</li>
             </ul>
         </div> `;
     } else if (employeeArray[i].empoyeeRole === "Engineer") {
-      runningHTML += `<div class="card col-2 card-margins text-white bg-light" style="width: 20rem;">
-                        <div class="card-header bg-primary">
+      runningHTML += `<div class="card col-2 card-margins bg-light " style="width: 20rem;">
+                        <div class="card-header bg-primary text-white">
                           <h3>${employeeArray[i].employeeName}</h3>
                           <h4><i class="fas fa-glasses"></i> Engineer</h4>
                         </div>
-                        <ul class="list-group list-group-flush">
-                        <li class="list-group-item">ID: ${employeeArray[i].employeeId}</li>
-                        <li class="list-group-item">Email: <a href="Email:${employeeArray[i].employeeEmail}">${employeeArray[i].employeeEmail}</a></li>
+                        <ul class="list-group list-group-flush text-dark">
+                        <li class="list-group-item">ID: ${employeeArray[i].employeeId}"</li>
+                        <li class="list-group-item">Email: <a href="${employeeArray[i].employeeEmail}">${employeeArray[i].employeeEmail}</a></li>
                         <li class="list-group-item">Github: <a href='https://github.com/${employeeArray[i].github}'>${employeeArray[i].github}</a></li>
                         </ul>
                     </div> `;
     } else {
-      runningHTML += `<div class="card col-2 card-margins text-white bg-light" style="width: 20rem;">
-                      <div class="card-header bg-primary">
+      runningHTML += `<div class="card col-2 card-margins text-secondary bg-light" style="width: 20rem;">
+                      <div class="card-header bg-primary text-white">
                         <h3>${employeeArray[i].employeeName}</h3>
                         <h4><i class="fas fa-user-graduate"></i>Intern</h4>
                       </div>
-                      <ul class="list-group list-group-flush">
+                      <ul class="list-group list-group-flush text-dark">
                       <li class="list-group-item">ID: ${employeeArray[i].id}</li>
-                      <li class="list-group-item">Email: <a href="Email:${employeeArray[i].employeeEmail}">${employeeArray[i].employeeEmail}</a></li>
+                      <li class="list-group-item">Email: <a href="${employeeArray[i].employeeEmail}">${employeeArray[i].employeeEmail}</a></li>
                       <li class="list-group-item">School: ${employeeArray[i].school}</li>
                       </ul>
                   </div> `;
