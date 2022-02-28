@@ -25,9 +25,9 @@ function templateGenerator(employeeArray) {
               <h4><i class="fas fa-mug-hot"></i>Manager</h4>
             </div>
             <ul class="list-group list-group-flush">
-            <li class="list-group-item">ID: ${employeeArray[i].id}</li>
-            <li class="list-group-item">Email: <a href="mailto:${employeeArray[i].employeeEmail}">${employeeArray[i].employeeEmail}</a></li>
-            <li class="list-group-item">Office Number: ${employeeArray[i].extension}</li>
+            <li class="list-group-item">ID: ${employeeArray[i].employeeId}</li>
+            <li class="list-group-item">Email: <a href="Email:${employeeArray[i].employeeEmail}">${employeeArray[i].employeeEmail}</a></li>
+            <li class="list-group-item">Office number: ${employeeArray[i].extension}</li>
             </ul>
         </div> `;
     } else if (employeeArray[i].empoyeeRole === "Engineer") {
@@ -37,8 +37,8 @@ function templateGenerator(employeeArray) {
                           <h4><i class="fas fa-glasses"></i> Engineer</h4>
                         </div>
                         <ul class="list-group list-group-flush">
-                        <li class="list-group-item">ID: ${employeeArray[i].id}</li>
-                        <li class="list-group-item">Email: <a href="mailto:${employeeArray[i].employeeEmail}">${employeeArray[i].employeeEmail}</a></li>
+                        <li class="list-group-item">ID: ${employeeArray[i].employeeId}</li>
+                        <li class="list-group-item">Email: <a href="Email:${employeeArray[i].employeeEmail}">${employeeArray[i].employeeEmail}</a></li>
                         <li class="list-group-item">Github: <a href='https://github.com/${employeeArray[i].github}'>${employeeArray[i].github}</a></li>
                         </ul>
                     </div> `;
@@ -50,7 +50,7 @@ function templateGenerator(employeeArray) {
                       </div>
                       <ul class="list-group list-group-flush">
                       <li class="list-group-item">ID: ${employeeArray[i].id}</li>
-                      <li class="list-group-item">Email: <a href="mailto:${employeeArray[i].employeeEmail}">${employeeArray[i].employeeEmail}</a></li>
+                      <li class="list-group-item">Email: <a href="Email:${employeeArray[i].employeeEmail}">${employeeArray[i].employeeEmail}</a></li>
                       <li class="list-group-item">School: ${employeeArray[i].school}</li>
                       </ul>
                   </div> `;

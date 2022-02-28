@@ -60,7 +60,7 @@ var engineerQuestions = [
         type: "list",
         name: "nextTeammate",
         message: "Enter another employee?",
-        choices: ["Yes", "No"],
+        choices: ["No", "Manager", "Engineer", "Intern"],
       },
     
 ];

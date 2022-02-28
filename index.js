@@ -17,6 +17,7 @@ const internQuestions = require("./src/internquestions");
 const cssGenerator = require("./src/css");
 const templateGenerator = require("./src/page-template");
 
+//empty Array for loop
 let employeeArray = [];
 
 function writeToFile(fileName, data) {
@@ -32,6 +33,7 @@ function writeToFile(fileName, data) {
   });
 }
 
+//async loop to generate employee information
 async function employeeLoop(employeeRole) {
   let newEmployee = {};
   let answers = {};
@@ -39,7 +41,7 @@ async function employeeLoop(employeeRole) {
   if (employeeRole === "Manager") {
     answers = await inquirer.prompt(managerQuestions);
     newEmployee = new Manager(
-      answers.employeName,
+      answers.employeeName,
       answers.employeeId,
       answers.employeeEmail,
       answers.extension
@@ -47,7 +49,7 @@ async function employeeLoop(employeeRole) {
   } else if (employeeRole === "Engineer") {
     answers = await inquirer.prompt(engineerQuestions);
     newEmployee = new Engineer(
-      answers.employeName,
+      answers.employeeName,
       answers.employeeId,
       answers.employeeEmail,
       answers.github
@@ -55,7 +57,7 @@ async function employeeLoop(employeeRole) {
   } else if (employeeRole === "Intern") {
     answers = await inquirer.prompt(internQuestions);
     newEmployee = new Intern(
-      answers.employeName,
+      answers.employeeName,
       answers.employeeId,
       answers.employeeEmail,
       answers.school
@@ -63,23 +65,23 @@ async function employeeLoop(employeeRole) {
   }
   employeeArray.push(newEmployee);
 
+  let nextTeammate = answers.nextTeammate;
 
-let nextTeammate = answers.nextTeammate;
+  //write to html based off of answers
+  if (nextTeammate === "No") {
+    console.log("generating team");
+    let generatedTemplate = templateGenerator(employeeArray);
 
-if (nextTeammate === "No") {
-  console.log("generating Team");
-  let generatedTemplate = templateGenerator(employeeArray);
+    writeToFile(`./dist/index.html`, generatedTemplate);
 
-  writeToFile(`./dist/index.html`, generatedTemplate);
-
-  let generatedcss = cssGenerator();
-  writeToFile("./dist/style.css", generatedcss);
-  console.log("README is generated in the dist folder!");
-} else {
-  // if statement for creating the next employee
-  console.log("Starting Prompt for your new " + nextTeammate + "!");
-  employeeLoop(nextTeammate);
+    let generatedcss = cssGenerator();
+    writeToFile("./dist/style.css", generatedcss);
+    console.log("File is generated successfully.");
+  } else {
+    console.log("New Employee question generated:");
+    employeeLoop(nextTeammate);
+  }
 }
-}
-// initialize javascript
+
+// initialize Loop
 employeeLoop("Manager");
