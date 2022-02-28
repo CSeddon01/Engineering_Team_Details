@@ -2,9 +2,9 @@ const Engineer = require("../lib/Engineer.js");
 
 test("creates engineer information object", () => {
   const engineer = new Engineer("tammerg", 4, "tammer@fakemail.com", "tammerg");
-  expect(engineer.name).toEqual(expect.any(String))
-  expect(engineer.id).toEqual(expect.any(Number));
-  expect(engineer.email).toEqual(expect.any(String))
+  expect(engineer.employeeName).toEqual(expect.any(String))
+  expect(engineer.employeeId).toEqual(expect.any(Number));
+  expect(engineer.employeeEmail).toEqual(expect.any(String))
   expect(engineer.github).toEqual(expect.any(String));
 
 });
