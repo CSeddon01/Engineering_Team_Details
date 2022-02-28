@@ -12,7 +12,7 @@ var managerQuestions = [
           }
         },
       },
-      //Ask for employee employeeId
+      //Ask for employee Id
       {
         type: "input",
         name: "employeeId",
@@ -26,7 +26,7 @@ var managerQuestions = [
           }
         },
       },
-      //Ask for employee employeeEmail
+      //Ask for employee Email
       {
         type: "input",
         name: "employeeEmail",
@@ -57,7 +57,7 @@ var managerQuestions = [
       //Ask if more employees
       {
         type: "list",
-        name: "newTeammate",
+        name: "nextTeammate",
         message: "Enter another employee?",
         choices: ["Yes", "No"],
       },

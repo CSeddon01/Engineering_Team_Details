@@ -13,6 +13,7 @@ const managerQuestions = require("./src/managerquestions");
 const engineerQuestions = require("./src/engineerquestions");
 const internQuestions = require("./src/internquestions");
 
+//request for css and html files
 const cssGenerator = require("./src/css");
 const templateGenerator = require("./src/page-template");
 
@@ -32,8 +33,8 @@ function writeToFile(fileName, data) {
 }
 
 async function employeeLoop(employeeRole) {
-  const newEmployee = {};
-  const answers = {};
+  let newEmployee = {};
+  let answers = {};
 
   if (employeeRole === "Manager") {
     answers = await inquirer.prompt(managerQuestions);
@@ -61,9 +62,9 @@ async function employeeLoop(employeeRole) {
     );
   }
   employeeArray.push(newEmployee);
-}
 
-let nextTeammate = answers.newTeammate;
+
+let nextTeammate = answers.nextTeammate;
 
 if (nextTeammate === "No") {
   console.log("generating Team");
@@ -79,6 +80,6 @@ if (nextTeammate === "No") {
   console.log("Starting Prompt for your new " + nextTeammate + "!");
   employeeLoop(nextTeammate);
 }
-
+}
 // initialize javascript
 employeeLoop("Manager");

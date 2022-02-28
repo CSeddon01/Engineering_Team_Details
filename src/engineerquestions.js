@@ -1,3 +1,4 @@
+
 var engineerQuestions = [
     {
         type: "input",
@@ -12,7 +13,7 @@ var engineerQuestions = [
           }
         },
       },
-      //Ask for employee employeeId
+      //Ask for employee Id
       {
         type: "input",
         name: "employeeId",
@@ -26,7 +27,7 @@ var engineerQuestions = [
           }
         },
       },
-      //Ask for employee employeeEmail
+      //Ask for employee Email
       {
         type: "input",
         name: "employeeEmail",
@@ -57,7 +58,7 @@ var engineerQuestions = [
       //Ask if more employees
       {
         type: "list",
-        name: "newTeammate",
+        name: "nextTeammate",
         message: "Enter another employee?",
         choices: ["Yes", "No"],
       },
