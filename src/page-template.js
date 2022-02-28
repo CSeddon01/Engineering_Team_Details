@@ -30,7 +30,7 @@ function templateGenerator(employeeArray) {
             <li class="list-group-item">Office number: ${employeeArray[i].extension}</li>
             </ul>
         </div> `;
-    } else if (employeeArray[i].empoyeeRole === "Engineer") {
+    } else if (employeeArray[i].employeeRole === "Engineer") {
       runningHTML += `<div class="card col-2 card-margins bg-light " style="width: 20rem;">
                         <div class="card-header bg-primary text-white">
                           <h3>${employeeArray[i].employeeName}</h3>
