@@ -49,7 +49,7 @@ function templateGenerator(employeeArray) {
                         <h4><i class="fas fa-user-graduate"></i>Intern</h4>
                       </div>
                       <ul class="list-group list-group-flush text-dark">
-                      <li class="list-group-item">ID: ${employeeArray[i].id}</li>
+                      <li class="list-group-item">ID: ${employeeArray[i].employeeId}</li>
                       <li class="list-group-item">Email: <a href="${employeeArray[i].employeeEmail}">${employeeArray[i].employeeEmail}</a></li>
                       <li class="list-group-item">School: ${employeeArray[i].school}</li>
                       </ul>
